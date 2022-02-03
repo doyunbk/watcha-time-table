@@ -1,0 +1,311 @@
+<p id="notice"><%= notice %></p>
+<div class="container-lecture">
+   <section class="header">
+      <h3 class="headline">시간표 만들기</h3>
+   </section>
+   <section class="section-nav">
+      <%= search_form_for @query do |form| %>
+      <%= form.search_field :title_or_code_or_professor_cont_any %>
+      <%= form.submit %>
+      <% end %>
+      <ul class="list-lecture">
+         <% @courses.each do |course| %>
+         <li class="card-lecture" data-toggle="modal" data-target="#modal-lecture-info-<%= course.id %>" >
+            <a class="lecture-title" href="#"> <%= course.title %> </a>
+            <h6 class="lecture-time">
+               <i class="material-icons ic-lecture-info">access_time</i>
+               <span><%= course.start_time.strftime('%H:%M') %> - <%= course.end_time.strftime('%H:%M') %> | <%= course.dayofweek %> </span>
+            </h6>
+            <ul class="list-lecture-info">
+               <li>교과목 코드 : <%= course.code %> </li>
+               <li>담당 교수 : <%= course.professor %> </li>
+               <li>강의실 : <%= course.location %> </li>
+            </ul>
+         </li>
+         <% end %>
+      </ul>
+   </section>
+   <section class="section-list">
+      <div class="container-xl">
+         <div class="table-schedule">
+            <div class="timeline">
+               <ul>
+                  <li><span>09:00</span></li>
+                  <li><span>09:30</span></li>
+                  <li><span>10:00</span></li>
+                  <li><span>10:30</span></li>
+                  <li><span>11:00</span></li>
+                  <li><span>11:30</span></li>
+                  <li><span>12:00</span></li>
+                  <li><span>12:30</span></li>
+                  <li><span>13:00</span></li>
+                  <li><span>13:30</span></li>
+                  <li><span>14:00</span></li>
+                  <li><span>14:30</span></li>
+                  <li><span>15:00</span></li>
+                  <li><span>15:30</span></li>
+                  <li><span>16:00</span></li>
+                  <li><span>16:30</span></li>
+                  <li><span>17:00</span></li>
+                  <li><span>17:30</span></li>
+                  <li><span>18:00</span></li>
+               </ul>
+            </div>
+            <div class="table-schedule-subject">
+               <ul class="list-lecture-item" >
+                  <li class="timeline-vertical" >
+                     <div class="top-info today">
+                        <h4 class="day">Mon</h4>
+                     </div>
+                     <ul>
+                        <% @enrolled_courses.each do |course| %>
+                        <% course.dayofweek.each do |day| %>
+                        <% if day == "월" %>
+                        <%= hours_range(course) %>
+                        <a href="#" data-toggle="modal" data-target="#modal-lecture-task-<%= course.id %>">
+                           <div class="lecture-info" >
+                              <h6 class="lecture-title"> <%= course.title %> </h6>
+                              <h6 class="lecture-location"> <%= course.location %> </h6>
+                           </div>
+                           <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                              <i class="material-icons ic-lecture-noti">assignment</i>
+                              <span class="lecture-noti-title">과제 제목 텍스트</span>
+                           </div>
+                        </a>
+                        </span>
+                        </li>
+                        <%end%>
+                        <%end%>
+                        <%end%>
+                     </ul>
+                  </li>
+                  <li class="timeline-vertical">
+                     <div class="top-info today">
+                        <h4 class="day">Tue</h4>
+                     </div>
+                     <ul>
+                        <% @enrolled_courses.each do |course| %>
+                        <% course.dayofweek.each do |day| %>
+                        <% if day == "화" %>
+                        <%= hours_range(course) %>
+                        <a href="#" data-toggle="modal" data-target="#modal-lecture-task-<%= course.id %>">
+                           <div class="lecture-info">
+                              <h6 class="lecture-title"> <%= course.title %> </h6>
+                              <h6 class="lecture-location"> <%= course.location %> </h6>
+                           </div>
+                           <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                              <i class="material-icons ic-lecture-noti">assignment</i>
+                              <span class="lecture-noti-title">과제 제목 텍스트</span>
+                           </div>
+                        </a>
+                        </li>
+                        <%end%>
+                        <%end%>
+                        <%end%>
+                     </ul>
+                  </li>
+                  <li class="timeline-vertical">
+                     <div class="top-info today">
+                        <h4 class="day">Wed</h4>
+                     </div>
+                     <ul>
+                        <% @enrolled_courses.each do |course| %>
+                        <% course.dayofweek.each do |day| %>
+                        <% if day == "수" %>
+                        <%= hours_range(course) %>
+                        <a href="#" data-toggle="modal" data-target="#modal-lecture-task-<%= course.id %>">
+                           <div class="lecture-info">
+                              <h6 class="lecture-title"> <%= course.title %> </h6>
+                              <h6 class="lecture-location"> <%= course.location %> </h6>
+                           </div>
+                           <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                              <i class="material-icons ic-lecture-noti">assignment</i>
+                              <span class="lecture-noti-title">과제 제목 텍스트</span>
+                           </div>
+                        </a>
+                        </li>
+                        <%end%>
+                        <%end%>
+                        <%end%>
+                     </ul>
+                  </li>
+                  <li class="timeline-vertical">
+                     <div class="top-info today">
+                        <h4 class="day">Thur</h4>
+                     </div>
+                     <ul>
+                        <% @enrolled_courses.each do |course| %>
+                        <% course.dayofweek.each do |day| %>
+                        <% if day == "목" %>
+                        <%= hours_range(course) %>
+                        <a href="#" data-toggle="modal" data-target="#modal-lecture-task-<%= course.id %>">
+                           <div class="lecture-info">
+                              <h6 class="lecture-title"> <%= course.title %> </h6>
+                              <h6 class="lecture-location"> <%= course.location %> </h6>
+                           </div>
+                           <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                              <i class="material-icons ic-lecture-noti">assignment</i>
+                              <span class="lecture-noti-title">과제 제목 텍스트</span>
+                           </div>
+                        </a>
+                        </li>
+                        <%end%>
+                        <%end%>
+                        <%end%>
+                     </ul>
+                  </li>
+                  <li class="timeline-vertical">
+                     <div class="top-info today">
+                        <h4 class="day">Fri</h4>
+                     </div>
+                     <ul>
+                        <% @enrolled_courses.each do |course| %>
+                        <% course.dayofweek.each do |day| %>
+                        <% if day == "금" %>
+                        <%= hours_range(course) %>
+                        <a href="#" data-toggle="modal" data-target="#modal-lecture-task-<%= course.id %>">
+                           <div class="lecture-info">
+                              <h6 class="lecture-title"> <%= course.title %> </h6>
+                              <h6 class="lecture-location"> <%= course.location %> </h6>
+                           </div>
+                           <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                              <i class="material-icons ic-lecture-noti">assignment</i>
+                              <span class="lecture-noti-title">과제 제목 텍스트</span>
+                           </div>
+                        </a>
+                        </li>
+                        <%end%>
+                        <%end%>
+                        <%end%>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </section>
+</div>
+
+<% @courses.each do |course| %>
+<div class="modal fade" id="modal-lecture-info-<%= course.id %>" role="dialog" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <h3 class="lecture-title"> <%= course.title %> </h3>
+            <ul class="lecture-info">
+               <li class="lecture-code">
+                  <i class="material-icons ic-lecture-info">access_alarm</i>
+                  <span>강의 시간 : <%= course.start_time.strftime('%H:%M') %> - <%= course.end_time.strftime('%H:%M') %> | <%= course.dayofweek %> </span>
+               </li>
+               <li class="lecture-code">
+                  <i class="material-icons ic-lecture-info">code</i>
+                  <span>교과목 코드 : <%= course.code %> </span>
+               </li>
+               <li class="lecture-code">
+                  <i class="material-icons ic-lecture-info">school</i>
+                  <span>담당 교수 : <%= course.professor %> </span>
+               </li>
+               <li class="lecture-code">
+                  <i class="material-icons ic-lecture-info">business</i>
+                  <span>강의실 : <%= course.location %></span>
+               </li>
+            </ul>
+            <div class="lecture-description">
+               <p class="txt-description"> 
+                  <%= course.description %>
+               </p>
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
+            <%= link_to "등록", enrollments_path(:user_id => current_user.id, :course_id => course.id), method: :post, class: "btn btn-light"  %>
+         </div>
+      </div>
+   </div>
+</div>
+<% end %>
+
+<% @enrolled_courses.each do |course| %>
+<div class="modal fade" id="modal-lecture-task-<%= course.id %>" role="dialog" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <h3 class="lecture-title"> <%= course.title %> </h3>
+            <ul class="lecture-info">
+               <li class="lecture-code">
+                  <i class="material-icons ic-lecture-info">access_alarm</i>
+                  <span>강의 시간 : <%= course.start_time.strftime('%H:%M') %> - <%= course.end_time.strftime('%H:%M') %> | <%= course.dayofweek %> </span>
+               </li>
+               <li class="lecture-code">
+                  <i class="material-icons ic-lecture-info">code</i>
+                  <span>교과목 코드 : <%= course.code %> </span>
+               </li>
+               <li class="lecture-code">
+                  <i class="material-icons ic-lecture-info">school</i>
+                  <span>담당 교수 : <%= course.professor %> </span>
+               </li>
+               <li class="lecture-code">
+                  <i class="material-icons ic-lecture-info">business</i>
+                  <span>강의실 : <%= course.location %></span>
+               </li>
+            </ul>
+            <div class="lecture-description">
+               <p class="txt-description"> 
+                  <%= course.description %>
+               </p>
+            </div>
+            <div class="lecture-memo">
+               <h5 class="memo-header">메모</h5>
+               <ul>
+                  <li class="memo-list">
+                     <div class="memo-content" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                        <i class="material-icons ic-lecture-noti">assignment</i>
+                        <span class="lecture-noti-title">과제 제목 텍스트</span>
+                     </div>
+                     <div class="memo-btn">
+                        <a href=""><i class="material-icons ic-lecture-noti">delete</i></a>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div class="modal-footer">
+            <div class="left">
+               <button class="btn btn-light-primary" type="button" data-toggle="popover"
+                  data-trigger="click" data-placement="right" data-html="true">
+               메모 등록
+               </button>
+            </div>
+            <div class="right">
+               <button type="button" class="btn btn-light" data-dismiss="modal">확인</button>
+               <%= link_to "취소", Enrollment.find_by(course_id: course.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"  %>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<%end%>
+
+<div id="PopoverContent" style="display: none;">
+   <h5 class="schedule-title">메모 등록하기</h5>
+   <div class="form-group">
+      <label class="col-form-label">제목
+      <input type="text" class="form-control" id="recipient-name" placeholder="제목 추가">
+      </label>
+   </div>
+   <div class="form-group">
+      <label for="message-text" class="col-form-label">설명</label>
+      <textarea class="form-control" id="message-text" placeholder="설명 추가"></textarea>
+   </div>
+   <button type="button" class="btn btn-primary btn-save">등록</button>
+</div>
