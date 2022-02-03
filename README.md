@@ -63,16 +63,16 @@ fields : user_id, course_id
 - Delete : Delete an `User` 🚨 `Enrollment` records will be deleted accordingly
 
 ##### 2. `Course`
-- Create : Create an `Item` 
-- Get : Fetch `Item` details
-- Update : Edit `Item` details
-- Delete : Delete an `Item` 🚨 `Enrollment` records will be deleted accordingly
+- Create : Create a `Course` 
+- Get : Fetch `Course` details
+- Update : Edit `Course` details
+- Delete : Delete a `Course` 🚨 `Enrollment` records will be deleted accordingly
 
 ##### 3. `Enrollment`
-- Create : Create a `Enrollment` 
+- Create : Create an `Enrollment` 
 - Get : Fetch `Enrollment` details
 - Update : Edit `Enrollment` details
-- Delete : Delete a `Enrollment` 
+- Delete : Delete an `Enrollment` 
 
 #### App features
 
